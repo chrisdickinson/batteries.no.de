@@ -57,11 +57,6 @@ NodeList.prototype.getNodesByType = function(type) {
 };
 
 NodeList.prototype.render = function(context, callback) {
-    var eter = new Eterator(this.nodes);
-    eter.eterate(function it(node, idx) {
-      node.render(context._copy(), it.next.bind(it, idx));
-    })
-
     var length = this.nodes.length,
         nodes = this.nodes,
         index = -1,
