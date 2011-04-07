@@ -38,13 +38,15 @@ var render = function(templates, context) {
         ee.emit('error', new Error('Could not find '+searching.join(', ')));
       }
     } else {
-      template.render(context, function(err, data) {
-        if(err) {
-          ee.emit('error', new Error('Error: '+err+' '+err.stack));
-        } else {
-          ee.emit('data', data);
-        }
-      });
+      setTimeout(function() {
+        template.render(context, function(err, data) {
+          if(err) {
+            ee.emit('error', new Error('Error: '+err+' '+err.stack));
+          } else {
+            ee.emit('data', data);
+          }
+        });
+      }, 0);
     }
   });
 
