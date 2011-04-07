@@ -62,18 +62,19 @@ NodeList.prototype.render = function(context, callback) {
         index = -1,
         output = [],
         eterator = function(err, data) {
-            var callee = arguments.callee;
             if(err) {
                 callback(err, null);
             } else {
                 output.push(data);
                 ++index;
                 if(index < length) {
-                    try {
-                        nodes[index].render(context._copy(), callee);
-                    } catch(err) {
-                        callback(err, null);
-                    }
+                    setTimeout(function() {
+                        try {
+                            nodes[index].render(context._copy(), eterator);
+                        } catch(err) {
+                            callback(err, null);
+                        }
+                    });
                 } else {
                     callback(null, output.slice(1).join(''));
                 }
