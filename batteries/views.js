@@ -1,4 +1,4 @@
-var render_to_response = require('./templates').render_to_response,
+var render_to_response = require('./template').render_to_response,
     paperboy = require('paperboy'),
     WEBROOT = require('path').join(__dirname, 'media');
 
