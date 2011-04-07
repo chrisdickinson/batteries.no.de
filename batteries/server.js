@@ -5,6 +5,9 @@ var http = require('http'),
     template = require('./template');
 
 var server = http.createServer();
-server.on('request', routes.root(template.render.bind(template, ['404.html'], {})));
+server.on('request', routes.root(function(req, response) {
+    template.render_to_response('404.html').
+      bind(req, response);
+}));
 server.listen(process.env.PORT || 8001);
 
