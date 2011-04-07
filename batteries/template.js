@@ -58,7 +58,6 @@ var render_to_response = function() {
       renderer.on('error', function(err) {
         response.writeHead(500, {'content-type':'text/plain'});
         response.write(err);
-        response.write(err.stack);
         response.end('Server had a boo-boo');
       });
       renderer.on('data', function(data) {
