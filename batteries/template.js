@@ -4,7 +4,8 @@ var plate = require('plate'),
     Library = libs.Library,
     FilterLibrary = libs.DefaultFilterLibrary,
     path = require('path'),
-    EE = require('events').EventEmitter;
+    EE = require('events').EventEmitter,
+    context_processors = require('./context_processors');
 
 var SERVER_TEMPLATES = path.join(__dirname, 'templates'),
     library = new Library(),
@@ -29,6 +30,13 @@ var render = function(templates, context) {
   context = context || {};
   var searching = templates.slice(),
       ee = new EE();
+
+  Object.keys(context_processors).forEach(function(key) {
+    var context_name = context_processors[key].context_name;
+      context_name &&
+      context[context_name] === undefined &&
+        (context[context_name] = context_processors[key]);
+  });
 
   load(templates.shift(), function(err, template) {
     if(err) {
