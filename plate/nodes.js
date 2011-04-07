@@ -74,7 +74,7 @@ NodeList.prototype.render = function(context, callback) {
                         } catch(err) {
                             callback(err, null);
                         }
-                    });
+                    }, 0);
                 } else {
                     callback(null, output.slice(1).join(''));
                 }
