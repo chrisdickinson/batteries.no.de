@@ -57,8 +57,7 @@ var render_to_response = function() {
     'bind':function(request, response) {
       renderer.on('error', function(err) {
         response.writeHead(500, {'content-type':'text/plain'});
-        response.write(err);
-        response.end('Server had a boo-boo');
+        response.end('Server had a boo-boo: \n'+err);
       });
       renderer.on('data', function(data) {
         response.writeHead(200, {'content-type':'text/html'});
