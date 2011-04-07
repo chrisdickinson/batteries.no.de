@@ -3,6 +3,6 @@ var escaperoute = require('escaperoute'),
     routes = escaperoute.routes;
 
 exports.routes = routes('batteries/views',
-  url('^/media/', 'media', 'serve_paperboy'),
+  url('^/media/', 'serve_paperboy', 'media'),
   url('^/$', 'home', 'home')
 );
